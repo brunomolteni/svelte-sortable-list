@@ -13,7 +13,7 @@
     "list"
   ],
   "description": "A svelte 3 component that implements a list with animated drag-n-drop functionality.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brunomolteni/svelte-sortable-list.git"
