@@ -4,6 +4,22 @@ This component renders a list of items which can be reordered by draggin and dro
 
 To make the component work you need two thing at least: setting the `list` prop and responding to `on:reorder` event.
 
+### Basic Example
+
+```jsx
+<script>
+import SortableList from 'svelte-sortable-list';
+
+const list = ["First Item", "Second Item", "Third Item"];
+const sortList = ev => list = ev.detail;
+</script>
+
+<SortableList 
+    {list} 
+    on:sort={sortList}
+/>
+```
+
 ## ⤵️ Props and Slot
 
 | name   | type      | required | default                           |
@@ -21,21 +37,6 @@ You can customize what element is used as the list item passing any element as t
 The component handles all the internal functionality but since you are passing the list as a prop, it can't actually change the data you pass to it, so you need to respond to an event that gets triggered any time you sort items.
 This is done using the `on:sort` event handler, which gets passed an `event` object that contains the list inside the `details` property ( this is the default way of handling event data in svelte).
 
-### Basic Example
-
-```jsx
-<script>
-import SortableList from 'svelte-sortable-list';
-
-const list = ["First Item", "Second Item", "Third Item"];
-const sortList = ev => list = ev.detail;
-</script>
-
-<SortableList 
-    {list} 
-    on:sort={sortList}
-/>
-```
 
 ### Complete Example
 
