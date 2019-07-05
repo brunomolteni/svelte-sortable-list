@@ -54,13 +54,15 @@
     let newList = [...list];
     newList[from] = [newList[to], (newList[to] = newList[from])][0];
 
-    dispatch("reorder", newList);
+    dispatch("sort", newList);
   };
 
+  // UTILS
+  const getKey = item => (key ? item[key] : item);
+
+  // PROPS
   export let list;
-  export let item;
-  export let key = "id";
-  let ListItem = item;
+  export let key;
 </script>
 
 <style>
@@ -73,21 +75,25 @@
   }
 </style>
 
-<ul>
-  {#each list as item, index (item[key])}
-    <li
-      data-index={index}
-      data-id={JSON.stringify(item[key])}
-      draggable="true"
-      on:dragstart={start}
-      on:dragover={over}
-      on:dragleave={leave}
-      on:drop={drop}
-      in:receive={{ key: item[key] }}
-      out:send={{ key: item[key] }}
-      animate:flip={{ duration: 300 }}
-      class:over={item[key] === isOver}>
-      <slot {item} />
-    </li>
-  {/each}
-</ul>
+{#if list && list.length}
+  <ul>
+    {#each list as item, index (getKey(item))}
+      <li
+        data-index={index}
+        data-id={JSON.stringify(getKey(item))}
+        draggable="true"
+        on:dragstart={start}
+        on:dragover={over}
+        on:dragleave={leave}
+        on:drop={drop}
+        in:receive={{ key: getKey(item) }}
+        out:send={{ key: getKey(item) }}
+        animate:flip={{ duration: 300 }}
+        class:over={getKey(item) === isOver}>
+        <slot {item}>
+          <p>{getKey(item)}</p>
+        </slot>
+      </li>
+    {/each}
+  </ul>
+{/if}
