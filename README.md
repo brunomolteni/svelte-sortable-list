@@ -23,7 +23,7 @@ This is done using the `on:sort` event handler, which gets passed an `event` obj
 
 ### Basic Example
 
-jsx`
+```jsx
 <script>
 const list = ["First Item", "Second Item", "Third Item"];
 const sortList = ev => list = ev.detail;
@@ -32,11 +32,11 @@ const sortList = ev => list = ev.detail;
     {list} 
     on:sort={sortList}
 />
-`
+```
 
 ### Complete Example
 
-jsx`
+```jsx
 
 <script>
 const list = [{id: 12334, name: 'Testing'},...];
@@ -50,4 +50,4 @@ const sortList = ev => list = ev.detail;
 >
     <CustomComponent {item} />
 </SortableList>
-`
+```
