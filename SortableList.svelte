@@ -66,6 +66,10 @@
 </script>
 
 <style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
   li {
     border: 2px dotted transparent;
     transition: border 0.1s linear;
@@ -90,7 +94,7 @@
         out:send={{ key: getKey(item) }}
         animate:flip={{ duration: 300 }}
         class:over={getKey(item) === isOver}>
-        <slot {item}>
+        <slot {item} {index}>
           <p>{getKey(item)}</p>
         </slot>
       </li>
