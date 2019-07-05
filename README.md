@@ -25,9 +25,12 @@ This is done using the `on:sort` event handler, which gets passed an `event` obj
 
 ```jsx
 <script>
+import SortableList from 'svelte-sortable-list';
+
 const list = ["First Item", "Second Item", "Third Item"];
 const sortList = ev => list = ev.detail;
 </script>
+
 <SortableList 
     {list} 
     on:sort={sortList}
@@ -39,9 +42,13 @@ const sortList = ev => list = ev.detail;
 ```jsx
 
 <script>
+import SortableList from 'svelte-sortable-list';
+import CustomComponent from './CustomComponent.svelte';
+
 const list = [{id: 12334, name: 'Testing'},...];
 const sortList = ev => list = ev.detail;
 </script>
+
 <SortableList 
     {list} 
     key="id" 
