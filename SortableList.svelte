@@ -44,10 +44,9 @@
     let dragged = getDraggedParent(ev.target);
     let from = ev.dataTransfer.getData("source");
     let to = dragged.index;
-    if(sortMode==="insert"){
+    if (sortMode === "insert") {
       insertSort({ from, to });
-    }
-    else{
+    } else {
       swapSort({ from, to });
     }
   };
@@ -55,28 +54,31 @@
   // DISPATCH REORDER
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
-  const insertSort=({from, to})=>{
-    let newList= [...list];
-    const movedItem={...newList[from]};
-    newList=[];
-    list.forEach((item,i)=>{
-      if(i===Number(from)){//Skip old position of movedItem
+  const insertSort = ({ from, to }) => {
+    if (from === to) {
+      return; //Don't do anything
+    }
+    let newList = [...list];
+    const movedItem = { ...newList[from] };
+    newList = [];
+    list.forEach((item, i) => {
+      if (i === Number(from)) {
+        //Skip old position of movedItem
         return;
       }
-      if(i===Number(to)){//Insert movedItem
-        if(Number(to)>Number(from)){
-          newList=newList.concat([{...item},movedItem]);
+      if (i === Number(to)) {
+        //Insert movedItem
+        if (Number(to) > Number(from)) {
+          newList = newList.concat([{ ...item }, movedItem]);
+        } else {
+          newList = newList.concat([movedItem, { ...item }]);
         }
-        else {
-          newList=newList.concat([movedItem,{...item}]);
-        }
-      }
-      else {
-        newList=newList.concat([{...item}]);
+      } else {
+        newList = newList.concat([{ ...item }]);
       }
     });
     dispatch("sort", newList);
-  }
+  };
   const swapSort = ({ from, to }) => {
     let newList = [...list];
     newList[from] = [newList[to], (newList[to] = newList[from])][0];
@@ -89,23 +91,9 @@
 
   // PROPS
   export let list;
-  export let sortMode='swap';
+  export let sortMode = "swap";
   export let key;
 </script>
-
-<style>
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  li {
-    border: 2px dotted transparent;
-    transition: border 0.1s linear;
-  }
-  .over {
-    border-color: rgba(48, 12, 200, 0.2);
-  }
-</style>
 
 {#if list && list.length}
   <ul>
@@ -129,3 +117,17 @@
     {/each}
   </ul>
 {/if}
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    border: 2px dotted transparent;
+    transition: border 0.1s linear;
+  }
+  .over {
+    border-color: rgba(48, 12, 200, 0.2);
+  }
+</style>
