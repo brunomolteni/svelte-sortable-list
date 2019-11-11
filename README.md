@@ -61,6 +61,7 @@ const sortList = ev => {list = ev.detail};
     key="id" 
     on:sort={sortList}
     let:item 
+    sortMode="insert"
 >
     <Component {item} />
 </SortableList>
