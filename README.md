@@ -22,15 +22,18 @@ const sortList = ev => {list = ev.detail};
 
 ## ⤵️ Props and Slot
 
-| name   | type      | required | default                           |
-| ------ | --------- | -------- | --------------------------------- |
-| `list` | Array     | ✔️       | ✖️                                |
-| `key`  | String    | ❌       | ✖️                                |
-| `slot` | Component | ❌       | `<p>{key ? item[key] : item}</p>` |
+| name       | type      | required | default                           |
+| ---------- | --------- | -------- | --------------------------------- |
+| `list`     | Array     | ✔️        | ✖️                                 |
+| `key`      | String    | ❌       | ✖️                                 |
+| `slot`     | Component | ❌       | `<p>{key ? item[key] : item}</p>` |
+| `sortMode` | String    | ❌       | `swap`                            |
 
 The way this works is that you are required to pass a `list` prop to the component, which could be an array with anything inside, but if the array contains objects or arrays you must pass the `key` prop to specify what property is going to be used as key (needs to be unique to each object in the array).
 
 You can customize what element is used as the list item passing any element as the child. If you do this you can access the item data by setting `let:item` on `<SortableList>` and `{item}` on your element ( you can also access the index in `let:index`).
+
+There are two sorting behaviors available, `swap` and `insert` mode. Swap mode will swap the items that are dropped on top of each other. Insert mode will insert the dropped item leaving the other items where they are.
 
 ## ⤴️ Events
 
