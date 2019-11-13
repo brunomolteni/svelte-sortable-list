@@ -25,7 +25,9 @@
   // DRAG AND DROP
   let isOver = false;
   const getDraggedParent = node =>
-    (node.dataset.index && node.dataset) || getDraggedParent(node.parentNode);
+    node.dataset && node.dataset.index
+      ? node.dataset
+      : getDraggedParent(node.parentNode);
   const start = ev => {
     ev.dataTransfer.setData("source", ev.target.dataset.index);
   };
