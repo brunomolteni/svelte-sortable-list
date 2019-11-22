@@ -63,7 +63,8 @@
   // PROPS
   export let list;
   export let key;
-  export let css	
+  export let cssUl
+  export let cssLi
 </script>
 
 <style>
@@ -81,7 +82,7 @@
 </style>
 
 {#if list && list.length}
-  <ul class="{css}">
+  <ul class="{cssUl}">
     {#each list as item, index (getKey(item))}
       <li
         data-index={index}
@@ -95,6 +96,7 @@
         out:send={{ key: getKey(item) }}
         animate:flip={{ duration: 300 }}
         class:over={getKey(item) === isOver}>
+	class="{cssli}"      
         <slot {item} {index}>
           <p>{getKey(item)}</p>
         </slot>
