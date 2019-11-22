@@ -63,6 +63,7 @@
   // PROPS
   export let list;
   export let key;
+  export let css	
 </script>
 
 <style>
@@ -80,7 +81,7 @@
 </style>
 
 {#if list && list.length}
-  <ul>
+  <ul class="{css}">
     {#each list as item, index (getKey(item))}
       <li
         data-index={index}
