@@ -47,8 +47,14 @@
   const dispatch = createEventDispatcher();
   const reorder = ({ from, to }) => {
     let newList = [...list]
-    newList.splice(to, 0, newList[from])
-    newList.splice(parseInt(from)+1, 1)
+    if(from >to){
+	newList.splice(to, 0, newList[from])
+	newList.splice(parseInt(from)+1, 1)
+    } else {
+	newList.splice(parseInt(to)+1, 0, newList[from])//adicion
+	newList.splice(parseInt(from), 1)//remove
+    }
+
     dispatch("sort", newList);
 	};
   // UTILS
