@@ -12,9 +12,9 @@
         duration: 600,
         easing: quintOut,
         css: t => `
-					transform: ${transform} scale(${t});
-					opacity: ${t}
-				`
+	transform: ${transform} scale(${t});
+	opacity: ${t}
+	`
       };
     }
   });
