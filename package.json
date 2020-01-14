@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/brunomolteni/svelte-sortable-list.git"
   },
-  "author": "Bruno Molteni <bruno@molteni.dev>",
+  "contributors":["Bruno Molteni <bruno@molteni.dev>", "John Cudd <jmcudd@gmail.com>"],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/brunomolteni/svelte-sortable-list/issues"
