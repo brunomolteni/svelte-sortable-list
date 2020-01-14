@@ -2,26 +2,22 @@
   import { quintOut } from "svelte/easing";
   import { crossfade } from "svelte/transition";
   import { flip } from "svelte/animate";
-
   // FLIP ANIMATION
   const [send, receive] = crossfade({
     duration: d => Math.sqrt(d * 200),
-
     fallback(node, params) {
       const style = getComputedStyle(node);
       const transform = style.transform === "none" ? "" : style.transform;
-
       return {
         duration: 600,
         easing: quintOut,
         css: t => `
-					transform: ${transform} scale(${t});
-					opacity: ${t}
-				`
+	transform: ${transform} scale(${t});
+	opacity: ${t}
+	`
       };
     }
   });
-
   // DRAG AND DROP
   let isOver = false;
   const getDraggedParent = node =>
@@ -48,23 +44,28 @@
     let to = dragged.index;
     reorder({ from, to });
   };
-
   // DISPATCH REORDER
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
   const reorder = ({ from, to }) => {
-    let newList = [...list];
-    newList[from] = [newList[to], (newList[to] = newList[from])][0];
+    let newList = [...list]
+    if(from >to){
+	newList.splice(to, 0, newList[from])
+	newList.splice(parseInt(from)+1, 1)
+    } else {
+	newList.splice(parseInt(to)+1, 0, newList[from])//adicion
+	newList.splice(parseInt(from), 1)//remove
+    }
 
     dispatch("sort", newList);
-  };
-
+	};
   // UTILS
   const getKey = item => (key ? item[key] : item);
-
   // PROPS
   export let list;
   export let key;
+  export let cssUl
+	export let cssLi
 </script>
 
 <style>
@@ -82,9 +83,9 @@
 </style>
 
 {#if list && list.length}
-  <ul>
+  <ul class="{cssUl}">
     {#each list as item, index (getKey(item))}
-      <li
+      <li class="{cssLi}"
         data-index={index}
         data-id={JSON.stringify(getKey(item))}
         draggable="true"
@@ -103,3 +104,4 @@
     {/each}
   </ul>
 {/if}
+© 2019 GitHub, Inc.
