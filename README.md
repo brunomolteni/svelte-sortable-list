@@ -22,11 +22,13 @@ const sortList = ev => {list = ev.detail};
 
 ## ⤵️ Props and Slot
 
-| name   | type      | required | default                           |
-| ------ | --------- | -------- | --------------------------------- |
-| `list` | Array     | ✔️       | ✖️                                |
-| `key`  | String    | ❌       | ✖️                                |
-| `slot` | Component | ❌       | `<p>{key ? item[key] : item}</p>` |
+| name                    | type      | required | default                           |
+| ----------------------- | --------- | -------- | --------------------------------- |
+| `list`                  | Array     | ✔️       | ✖️                                |
+| `key`                   | String    | ❌       | ✖️                                |
+| `animflipduration`      | Number    | ❌       | 300                               |
+| `animcrossfadeduration` | Number    | ❌       | 600                               |
+| `slot`                  | Component | ❌       | `<p>{key ? item[key] : item}</p>` |
 
 The way this works is that you are required to pass a `list` prop to the component, which could be an array with anything inside, but if the array contains objects or arrays you must pass the `key` prop to specify what property is going to be used as key (needs to be unique to each object in the array).
 

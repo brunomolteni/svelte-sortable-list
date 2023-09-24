@@ -12,7 +12,7 @@
       const transform = style.transform === "none" ? "" : style.transform;
 
       return {
-        duration: 600,
+        duration: animcrossfadeduration,
         easing: quintOut,
         css: t => `
 					transform: ${transform} scale(${t});
@@ -65,6 +65,8 @@
   // PROPS
   export let list;
   export let key;
+  export let animflipduration = 300;
+  export let animcrossfadeduration = 600;
 </script>
 
 <style>
@@ -94,7 +96,7 @@
         on:drop={drop}
         in:receive={{ key: getKey(item) }}
         out:send={{ key: getKey(item) }}
-        animate:flip={{ duration: 300 }}
+        animate:flip={{ duration: animflipduration }}
         class:over={getKey(item) === isOver}>
         <slot {item} {index}>
           <p>{getKey(item)}</p>
