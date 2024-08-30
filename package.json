@@ -3,7 +3,7 @@
   "main": "SortableList.svelte",
   "svelte": "SortableList.svelte",
   "devDependencies": {
-    "svelte": "^3.6.4"
+    "svelte": "^4.2.19"
   },
   "keywords": [
     "svelte",
